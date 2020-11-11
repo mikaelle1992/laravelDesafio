@@ -44,7 +44,9 @@
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
           </form>
         </div>
+
       </nav>
+
       <div class="container my-5">
           @yield('page')
       </div>

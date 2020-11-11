@@ -2,12 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Patient;
 use App\Models\Client;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
 
-class ClientController extends Controller
+class PatientController extends Controller
 {
+    private $patient;
+    private $client;
+
+
+    public function __construct()
+    {
+        $this->patient=new Patient();
+        $this->client=new Client();
+
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,8 +25,9 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $clients = Client::all();
-        return view('clients.index', compact('clients'));
+       // dd($this->patient->find(1)->relClient);
+       dd($this->client->find(1)->relPatient);
+
     }
 
     /**
@@ -26,7 +37,7 @@ class ClientController extends Controller
      */
     public function create()
     {
-        return view('clients.create');
+        //
     }
 
     /**
@@ -37,33 +48,27 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-
-        $clients = Client::create($request->all());
-        return Redirect:: to('/clients');
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Client  $client
+     * @param  \App\Models\Patient  $patient
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Patient $patient)
     {
-
-        $clients = Client::find($id);
-        return view('clients.show', compact('clients'));
-
-
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Client  $client
+     * @param  \App\Models\Patient  $patient
      * @return \Illuminate\Http\Response
      */
-    public function edit(Client $client)
+    public function edit(Patient $patient)
     {
         //
     }
@@ -72,10 +77,10 @@ class ClientController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Client  $client
+     * @param  \App\Models\Patient  $patient
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Client $client)
+    public function update(Request $request, Patient $patient)
     {
         //
     }
@@ -83,10 +88,10 @@ class ClientController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Client  $client
+     * @param  \App\Models\Patient  $patient
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Client $client)
+    public function destroy(Patient $patient)
     {
         //
     }

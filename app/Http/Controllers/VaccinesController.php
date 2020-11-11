@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Client;
+use App\Models\Vaccines;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
 
-class ClientController extends Controller
+class VaccinesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +14,7 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $clients = Client::all();
-        return view('clients.index', compact('clients'));
+        //
     }
 
     /**
@@ -26,7 +24,7 @@ class ClientController extends Controller
      */
     public function create()
     {
-        return view('clients.create');
+        //
     }
 
     /**
@@ -37,33 +35,27 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-
-        $clients = Client::create($request->all());
-        return Redirect:: to('/clients');
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Client  $client
+     * @param  \App\Models\vaccines  $vaccines
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Vaccines $vaccines)
     {
-
-        $clients = Client::find($id);
-        return view('clients.show', compact('clients'));
-
-
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Client  $client
+     * @param  \App\Models\vaccines  $vaccines
      * @return \Illuminate\Http\Response
      */
-    public function edit(Client $client)
+    public function edit(Vaccines $vaccines)
     {
         //
     }
@@ -72,10 +64,10 @@ class ClientController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Client  $client
+     * @param  \App\Models\vaccines  $vaccines
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Client $client)
+    public function update(Request $request, Vaccines $vaccines)
     {
         //
     }
@@ -83,10 +75,10 @@ class ClientController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Client  $client
+     * @param  \App\Models\vaccines  $vaccines
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Client $client)
+    public function destroy(Vaccines $vaccines)
     {
         //
     }

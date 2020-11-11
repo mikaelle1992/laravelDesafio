@@ -2,12 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Client;
+use App\Models\Vaccine_wallets;
+use App\Models\Vaccine;
+use App\Models\Vaccines;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
 
-class ClientController extends Controller
+class VaccineWalletsController extends Controller
 {
+    private $vaccine_wallets;
+    private $vaccine;
+
+
+    public function __construct()
+    {
+        $this->vaccine=new Vaccines();
+        $this->vaccine_wallets=new Vaccine_wallets();
+
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,8 +26,7 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $clients = Client::all();
-        return view('clients.index', compact('clients'));
+        dd($this->vaccine_wallets->find(1)->relUser);
     }
 
     /**
@@ -26,7 +36,7 @@ class ClientController extends Controller
      */
     public function create()
     {
-        return view('clients.create');
+        //
     }
 
     /**
@@ -37,33 +47,27 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-
-        $clients = Client::create($request->all());
-        return Redirect:: to('/clients');
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Client  $client
+     * @param  \App\Models\Vaccine_wallets  $vaccine_wallets
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Vaccine_wallets $vaccine_wallets)
     {
-
-        $clients = Client::find($id);
-        return view('clients.show', compact('clients'));
-
-
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Client  $client
+     * @param  \App\Models\Vaccine_wallets  $vaccine_wallets
      * @return \Illuminate\Http\Response
      */
-    public function edit(Client $client)
+    public function edit(Vaccine_wallets $vaccine_wallets)
     {
         //
     }
@@ -72,10 +76,10 @@ class ClientController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Client  $client
+     * @param  \App\Models\Vaccine_wallets  $vaccine_wallets
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Client $client)
+    public function update(Request $request, Vaccine_wallets $vaccine_wallets)
     {
         //
     }
@@ -83,10 +87,10 @@ class ClientController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Client  $client
+     * @param  \App\Models\Vaccine_wallets  $vaccine_wallets
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Client $client)
+    public function destroy(Vaccine_wallets $vaccine_wallets)
     {
         //
     }

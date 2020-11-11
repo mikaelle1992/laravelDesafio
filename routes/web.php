@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\AnimalController;
+use App\Http\Controllers\PatientController;
+use App\Http\Controllers\VaccineWalletsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,3 +21,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::resource('clients', ClientController::class);
+Route::resource('animals', AnimalController::class);
+Route::resource('patients', PatientController::class);
+Route::resource('vaccinewallest', VaccineWalletsController::class);
