@@ -12,7 +12,7 @@ class Animal extends Model
 
      ];
 
-    public function relBreeds(){
-        return $this->hasOne('App\Models\Breed','animal_id');
+    public function relBreed(){
+        return $this->hasMany('App\Models\Breed','animal_id');
     }
 }

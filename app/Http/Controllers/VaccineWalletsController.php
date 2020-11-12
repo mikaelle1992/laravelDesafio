@@ -3,22 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Vaccine_wallets;
-use App\Models\Vaccine;
 use App\Models\Vaccines;
+use App\Models\User;
+use App\Models\Patient;
 use Illuminate\Http\Request;
 
 class VaccineWalletsController extends Controller
 {
-    private $vaccine_wallets;
-    private $vaccine;
 
-
-    public function __construct()
-    {
-        $this->vaccine=new Vaccines();
-        $this->vaccine_wallets=new Vaccine_wallets();
-
-    }
     /**
      * Display a listing of the resource.
      *
@@ -26,7 +18,11 @@ class VaccineWalletsController extends Controller
      */
     public function index()
     {
-        dd($this->vaccine_wallets->find(1)->relUser);
+        $users = User::all();
+        $patients = Patient::all();
+        $vaccines = Vaccines::all();
+        $vaccinewallets = Vaccine_wallets::all();
+        return view('vaccinewallets.index', compact('users','patients','vaccines','vaccinewallets'));
     }
 
     /**
@@ -36,9 +32,10 @@ class VaccineWalletsController extends Controller
      */
     public function create()
     {
-        //
-    }
 
+        $vaccinewallets = Vaccine_wallets::all();
+        return view('vaccinewallets.create', compact('vaccinewallets'));
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -47,7 +44,17 @@ class VaccineWalletsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $vaccinewallets = Vaccine_wallets::create([
+            'user_id'=>$request->user_id,
+            'vaccine_id'=>$request->vaccine_id,
+            'patient_id'=>$request->patient_id,
+            'vaccine_date'=>$request->vaccine_date,
+
+         ]);
+         if($vaccinewallets){
+             return redirect('vaccinewallets');
+         }
+
     }
 
     /**
@@ -56,9 +63,14 @@ class VaccineWalletsController extends Controller
      * @param  \App\Models\Vaccine_wallets  $vaccine_wallets
      * @return \Illuminate\Http\Response
      */
-    public function show(Vaccine_wallets $vaccine_wallets)
+    public function show($id)
     {
-        //
+        $users = User::find($id);
+        $patients = Patient::find($id);
+        $vaccines = Vaccines::find($id);
+        $vaccinewallets = Vaccine_wallets::find($id);
+        return view('vaccinewallets.show', compact('users','patients','vaccines','vaccinewallets'));
+
     }
 
     /**
@@ -67,9 +79,15 @@ class VaccineWalletsController extends Controller
      * @param  \App\Models\Vaccine_wallets  $vaccine_wallets
      * @return \Illuminate\Http\Response
      */
-    public function edit(Vaccine_wallets $vaccine_wallets)
+    public function edit($id)
     {
-        //
+        $users= User::all();
+        $patients= Patient::all();
+        $vaccines= Vaccines::all();
+        $vaccinewallets = Vaccine_wallets::find($id);
+
+        return view('vaccinewallets.create', compact('users','patients','vaccines','vaccinewallets'));
+
     }
 
     /**
@@ -79,9 +97,17 @@ class VaccineWalletsController extends Controller
      * @param  \App\Models\Vaccine_wallets  $vaccine_wallets
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Vaccine_wallets $vaccine_wallets)
+    public function update(Request $request, $id)
     {
-        //
+
+        $vaccine_wallets = Vaccine_wallets::where (['id'=>$id])->update([
+            'user_id'=>$request->user_id,
+            'vaccine_id'=>$request->vaccine_id,
+            'patient_id'=>$request->patient_id,
+            'vaccine_date'=>$request->vaccine_date,
+        ]);
+        return redirect('vaccinewallets');
+
     }
 
     /**
@@ -90,8 +116,14 @@ class VaccineWalletsController extends Controller
      * @param  \App\Models\Vaccine_wallets  $vaccine_wallets
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Vaccine_wallets $vaccine_wallets)
+    public function destroy($id)
     {
-        //
+        $vaccinewallet = Vaccine_wallets::find($id);
+       $vaccinewallet->delete();
+
+        if($vaccinewallet){
+            return redirect('vaccinewallets');
+        }
+
     }
 }

@@ -4,20 +4,14 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Animal;
-use App\Models\Breed;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+
 
 
 class AnimalController extends Controller
 {
-    private $animal;
-    private $breed;
 
-    public function __construct()
-    {
-        $this->animal=new Animal();
-        $this->breed=new Breed();
-    }
 
     /**
      * Display a listing of the resource.
@@ -27,7 +21,8 @@ class AnimalController extends Controller
     public function index()
     {
 
-       dd($this->animal->find(1)->relBreeds);
+        $animals= Animal::all();
+        return view('animals.index', compact('animals'));
     }
 
     /**
@@ -37,7 +32,8 @@ class AnimalController extends Controller
      */
     public function create()
     {
-        //
+        return view('animals.create');
+
     }
 
     /**
@@ -48,7 +44,13 @@ class AnimalController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $animal= Animal::create([
+            'name'=>$request->name,
+
+         ]);
+         if($animal){
+             return redirect('animals');
+         }
     }
 
     /**
@@ -57,10 +59,11 @@ class AnimalController extends Controller
      * @param  \App\Models\animals  $animals
      * @return \Illuminate\Http\Response
      */
-    public function show(Animal $animals)
+    public function show($id)
     {
-        //
-    }
+        $animals = Animal::find($id);
+        return view('animals.show', compact('animals'));
+ }
 
     /**
      * Show the form for editing the specified resource.
@@ -68,9 +71,11 @@ class AnimalController extends Controller
      * @param  \App\Models\animals  $animals
      * @return \Illuminate\Http\Response
      */
-    public function edit(Animal $animals)
+    public function edit($id)
     {
-        //
+        $animals= Animal::find($id);
+        return view('animals.create', compact('animals'));
+
     }
 
     /**
@@ -80,9 +85,12 @@ class AnimalController extends Controller
      * @param  \App\Models\animals  $animals
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Animal $animals)
+    public function update(Request $request,$id)
     {
-        //
+        $animal = Animal::where(['id'=>$id])->update([
+            'name'=>$request->name,
+        ]);
+        return redirect('animals');
     }
 
     /**

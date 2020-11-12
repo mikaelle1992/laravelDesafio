@@ -13,7 +13,7 @@ class Client extends Model
        'email',
 
     ];
-    public function relPatient(){
+    public function relPatients(){
         return $this->hasMany('App\Models\Patient','client_id');
     }
 }

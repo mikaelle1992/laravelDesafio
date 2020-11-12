@@ -51,5 +51,7 @@
           @yield('page')
       </div>
 
+      <script src="{{url("assets/js/javascript.js")}}"></script>
+
 </body>
 </html>

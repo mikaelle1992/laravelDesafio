@@ -3,21 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Patient;
+use App\Models\Breed;
 use App\Models\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+
 
 class PatientController extends Controller
 {
-    private $patient;
-    private $client;
 
-
-    public function __construct()
-    {
-        $this->patient=new Patient();
-        $this->client=new Client();
-
-    }
     /**
      * Display a listing of the resource.
      *
@@ -25,8 +19,8 @@ class PatientController extends Controller
      */
     public function index()
     {
-       // dd($this->patient->find(1)->relClient);
-       dd($this->client->find(1)->relPatient);
+        $patients= Patient::all();
+        return view('patients.index', compact('patients'));
 
     }
 
@@ -37,7 +31,10 @@ class PatientController extends Controller
      */
     public function create()
     {
-        //
+         $clients = Client::all();
+         $breeds = Breed::all();
+        return view('patients.create', compact('breeds','clients'));
+
     }
 
     /**
@@ -48,7 +45,16 @@ class PatientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       $patient= Patient::create([
+            'name'=>$request->name,
+            'date_birth'=>$request->date_birth,
+            'gender'=>$request->gender,
+            'breed_id'=>$request->breed_id,
+            'client_id'=>$request->client_id
+         ]);
+         if($patient){
+             return redirect('patients');
+         }
     }
 
     /**
@@ -57,9 +63,12 @@ class PatientController extends Controller
      * @param  \App\Models\Patient  $patient
      * @return \Illuminate\Http\Response
      */
-    public function show(Patient $patient)
+    public function show($id)
     {
-        //
+
+        $patients = Patient::find($id);
+        return view('patients.show', compact('patients'));
+
     }
 
     /**
@@ -68,9 +77,12 @@ class PatientController extends Controller
      * @param  \App\Models\Patient  $patient
      * @return \Illuminate\Http\Response
      */
-    public function edit(Patient $patient)
+    public function edit($id)
     {
-        //
+        $patients= Patient::find($id);
+        $breeds= Breed::all();
+        $clients= Client::all();
+        return view('patients.create', compact('patients','clients','breeds'));
     }
 
     /**
@@ -80,9 +92,16 @@ class PatientController extends Controller
      * @param  \App\Models\Patient  $patient
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Patient $patient)
+    public function update(Request $request, $id)
     {
-        //
+        $patients = Patient::where (['id'=>$id])->update([
+            'name'=>$request->name,
+            'date_birth'=>$request->date_birth,
+            'gender'=>$request->gender,
+            'breed_id'=>$request->breed_id,
+            'client_id'=>$request->client_id,
+        ]);
+        return redirect('patients');
     }
 
     /**

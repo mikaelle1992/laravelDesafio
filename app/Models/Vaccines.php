@@ -13,6 +13,6 @@ class Vaccines extends Model
     ];
     public function relVaccine_wallet()
     {
-        return $this->hasMany('App\Models\Vaccine_wallets', 'id', 'vaccine_id');
+        return $this->hasOne('App\Models\Vaccine_wallets','vaccine_id');
     }
 }

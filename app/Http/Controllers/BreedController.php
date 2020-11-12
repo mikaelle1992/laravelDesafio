@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Breed;
+use App\Models\Animal;
 use Illuminate\Http\Request;
 
 class BreedController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +16,8 @@ class BreedController extends Controller
      */
     public function index()
     {
-
+        $breeds = Breed::all();
+        return view ('breeds.index',compact('breeds',));
     }
 
     /**
@@ -24,7 +27,8 @@ class BreedController extends Controller
      */
     public function create()
     {
-        //
+        $breeds = Breed::all();
+        return view ('breeds.create',compact('breeds',));
     }
 
     /**
@@ -35,7 +39,15 @@ class BreedController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $breed = Breed::create([
+            'name'=>$request->name,
+            'animal_id'=>$request->animal_id,
+
+         ]);
+         if($breed){
+             return redirect('breeds');
+         }
+
     }
 
     /**
@@ -44,9 +56,10 @@ class BreedController extends Controller
      * @param  \App\Models\breeds  $breeds
      * @return \Illuminate\Http\Response
      */
-    public function show(Breed $breeds)
+    public function show($id)
     {
-        //
+        $breeds = Breed::find($id);
+        return view('breeds.show', compact('breeds'));
     }
 
     /**
@@ -55,9 +68,11 @@ class BreedController extends Controller
      * @param  \App\Models\breeds  $breeds
      * @return \Illuminate\Http\Response
      */
-    public function edit(Breed $breeds)
+    public function edit($id)
     {
-        //
+        $animals= Animal::all();
+        $breeds= Breed::find($id);
+        return view('breeds.create', compact('animals','breeds'));
     }
 
     /**
@@ -67,9 +82,13 @@ class BreedController extends Controller
      * @param  \App\Models\breeds  $breeds
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Breed $breeds)
+    public function update(Request $request, $id)
     {
-        //
+        $breed = Breed::where(['id'=>$id])->update([
+            'name'=>$request->name,
+            'animal_id'=>$request->animal_id,
+        ]);
+        return redirect('breeds');
     }
 
     /**

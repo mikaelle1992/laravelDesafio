@@ -40,8 +40,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    public function relVaccine_wallet()
+    public function relVaccine_wallets()
     {
-        return $this->hasMany('App\Models\Vaccine_wallets', 'id', 'user_id');
+        return $this->hasMany('App\Models\Vaccine_wallets', 'user_id');
     }
 }

@@ -15,7 +15,7 @@ class Breed extends Model
     public function relAnimal(){
         return $this->hasOne('App\Models\Animal','id','animal_id');
     }
-    public function relPacient(){
+    public function relPacients(){
         return $this->hasMany('App\Models\Pacient','breed_id');
     }
 }

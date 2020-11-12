@@ -1,25 +1,29 @@
 @extends('layouts.app')
 
 @section('page')
+<h1 class="text-center">@if(isset($clients))Editar @else Cadastrar
 
-<form action="{{url('clients')}}" method="POST">
+    @endif</h1><hr>
+
+<div class="col-8 m-auto">
+    @if (isset($clients))
+    <form  name="formEdit" id="formEdit" method="POST" action="{{url("clients/$clients->id")}}" >
+       @method('PUT')
+    @else
+       <form  name="formCard" id="formCard" method="POST" action="{{url('clients')}}" >
+     @endif
 @csrf
-    <div class="form-group">
-        <label for="exampleInputName1">Name</label>
-          <input type="text" name="name" class="form-control" >
-    </div>
-    <div class="form-group">
-        <label for="exampleInputTel1">Telephone</label>
-        <input type="tel" name="telefone" class="form-control" >
-  </div>
-    <div class="form-group">
-      <label for="exampleInputEmail1">E-mail</label>
-      <input type="email" name = "email"class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-    </div>
+    Name:
+    <input class="form-control" type="text" name="name" id="name" value="{{$clients->name ?? ''}}"required><br>
+    Phone:
+    <input class="form-control" type="tel" name="phone" id="phone" value="{{$clients->phone ?? ''}}"equired><br>
+    Email:
+    <input class="form-control" type="email" name="email" id="email" value="{{$clients->email ?? ''}}"required><br>
 
 
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary">@if(isset($clients)) Edit @else Submit @endif
+
   </form>
+</div>
 @endsection
 

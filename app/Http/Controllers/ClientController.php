@@ -38,8 +38,16 @@ class ClientController extends Controller
     public function store(Request $request)
     {
 
-        $clients = Client::create($request->all());
-        return Redirect:: to('/clients');
+        $client = Client::create([
+            'name'=>$request->name,
+            'phone'=>$request->phone,
+            'email'=>$request->email,
+
+
+         ]);
+         if($client){
+             return redirect('clients');
+         }
     }
 
     /**
@@ -63,9 +71,11 @@ class ClientController extends Controller
      * @param  \App\Models\Client  $client
      * @return \Illuminate\Http\Response
      */
-    public function edit(Client $client)
+    public function edit($id)
     {
-        //
+        $clients= Client::find($id);
+        return view('clients.create', compact('clients'));
+
     }
 
     /**
@@ -75,9 +85,14 @@ class ClientController extends Controller
      * @param  \App\Models\Client  $client
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Client $client)
+    public function update(Request $request, $id)
     {
-        //
+        $clients = Client::where(['id'=>$id])->update([
+            'name'=>$request->name,
+            'phone'=>$request->phone,
+            'email'=>$request->email,
+            ]);
+            return redirect('clients');
     }
 
     /**
