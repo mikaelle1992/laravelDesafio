@@ -32,9 +32,10 @@ class VaccineWalletsController extends Controller
      */
     public function create()
     {
-
-        $vaccinewallets = Vaccine_wallets::all();
-        return view('vaccinewallets.create', compact('vaccinewallets'));
+        $users = User::all();
+        $patients = Patient::all();
+        $vaccines = Vaccines::all();
+        return view('vaccinewallets.create', compact('users','patients','vaccines'));
     }
     /**
      * Store a newly created resource in storage.
@@ -119,11 +120,10 @@ class VaccineWalletsController extends Controller
     public function destroy($id)
     {
         $vaccinewallet = Vaccine_wallets::find($id);
-       $vaccinewallet->delete();
+        $vaccinewallet->delete();
+        return redirect('vaccinewallets');
 
-        if($vaccinewallet){
-            return redirect('vaccinewallets');
-        }
+
 
     }
 }

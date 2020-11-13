@@ -35,16 +35,20 @@
              <td>{{$vaccinewallet->vaccine_date}}</td>
 
             <td>
+
                 <a href="{{url("vaccinewallets/$vaccinewallet->id")}}">
                     <button class="btn btn-dark">Visualizar</button>
                 </a>
                 <a href="{{url("vaccinewallets/$vaccinewallet->id/edit")}}">
                     <button class="btn btn-primary">Editar</button>
                 </a>
-
-                <a href="{{url("vaccinewallets/$vaccinewallet->id/delete")}}">
-                 <button class="btn btn-danger">Deletar</button>
+ <form action="{{ route('vaccinewallets.destroy',$vaccinewallet->id) }}" method="POST">
+                <a href="{{url("vaccinewallets/$vaccinewallet->id")}}">
+                    @csrf
+                    @method('DELETE')
+                 <button type="submit" class="btn btn-danger" >Deletar</button>
                 </a>
+                </form>
             </td>
           </tr>
         @endforeach

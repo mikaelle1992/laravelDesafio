@@ -22,15 +22,22 @@
             <td>{{$animal->name}}</td>
 
             <td>
+
+
                 <a href="{{url("animals/$animal->id")}}">
                     <button class="btn btn-dark">Visualizar</button>
                 </a>
                 <a href="{{url("animals/$animal->id/edit")}}">
                     <button class="btn btn-primary">Editar</button>
                 </a>
-                <a href="">
+
+                <form action="{{ route('animals.destroy',$animal->id) }}" method="POST">
+                <a href="{{url("animals/$animal->id")}}">
+                     @csrf
+                    @method('DELETE')
                     <button class="btn btn-danger">Deletar</button>
                 </a>
+                </form>
             </td>
           </tr>
         @endforeach

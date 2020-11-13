@@ -99,8 +99,10 @@ class AnimalController extends Controller
      * @param  \App\Models\animals  $animals
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Animal $animals)
+    public function destroy($id)
     {
-        //
+        $animal = Animal::find($id);
+        $animal->delete();
+        return redirect('animals');
     }
 }

@@ -4,17 +4,11 @@
 
 <h1 class="text-center">Visualizar</h1><hr>
 
-@php
 
-$users=$vaccinewallets->find($vaccinewallets->id)->relUser;
-//$vaccines= $vaccinewallet->find($vaccinewallet->id)->Vaccines;
-$patients= $vaccinewallets->find($vaccinewallets->id)->relPatient;
-@endphp
-
-Id:{{$vaccinewallets->id}}<br>
-User: {{$users->name}}<br>
-Vaccine: {{$vaccines->name}}<br>
-Pacient: {{$patients->name}}<br>
+<h3>Vaccines Wallets</h3>
+User: {{$vaccinewallets->relUser->name}}<br>
+Vaccine: {{$vaccinewallets->vaccine_id}}<br>
+Patient: {{$vaccinewallets->relPatient->name}}<br>
 Vaccine Date: {{$vaccinewallets->vaccine_date}}<br>
 
 

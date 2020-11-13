@@ -32,15 +32,21 @@
 
 
             <td>
+
+
                 <a href="{{url("breeds/$breed->id")}}">
                     <button class="btn btn-dark">Visualizar</button>
                 </a>
                 <a href="{{url("breeds/$breed->id/edit")}}">
                     <button class="btn btn-primary">Editar</button>
                 </a>
-                <a href="">
+            <form action="{{ route('breeds.destroy',$breed->id) }}" method="POST">
+                <a href="{{url("breeds/$breed->id")}}">
+                    @csrf
+                    @method('DELETE')
                     <button class="btn btn-danger">Deletar</button>
                 </a>
+                </form>
             </td>
           </tr>
         @endforeach

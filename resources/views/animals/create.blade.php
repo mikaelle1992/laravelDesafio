@@ -16,7 +16,7 @@
     Name:
     <input class="form-control" type="text" name="name" id="name" value="{{$animals->name ?? ''}}" ><br>
 
-    <button type="submit" class="btn btn-primary">@if(isset($animals)) Edit @else Submit @endif
+    <button type="submit" class="btn btn-primary">@if(isset($animals)) Edit @else Register @endif
 
   </form>
 </div>

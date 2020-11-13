@@ -37,15 +37,21 @@
 
 
             <td>
+
+
                 <a href="{{url("patients/$patient->id")}}">
                     <button class="btn btn-dark">Visualizar</button>
                 </a>
                 <a href="{{url("patients/$patient->id/edit")}}">
                     <button class="btn btn-primary">Editar</button>
                 </a>
+                 <form action="{{ route('patients.destroy',$patient->id) }}" method="POST">
                 <a href="{{url("patients/$patient->id")}}">
+                    @csrf
+                    @method('DELETE')
                     <button class="btn btn-danger">Deletar</button>
                 </a>
+                </form>
             </td>
           </tr>
         @endforeach

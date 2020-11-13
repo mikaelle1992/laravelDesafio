@@ -27,8 +27,8 @@ class BreedController extends Controller
      */
     public function create()
     {
-        $breeds = Breed::all();
-        return view ('breeds.create',compact('breeds',));
+        $animals = Animal::all();
+        return view ('breeds.create',compact('animals',));
     }
 
     /**
@@ -97,8 +97,10 @@ class BreedController extends Controller
      * @param  \App\Models\breeds  $breeds
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Breed $breeds)
+    public function destroy($id)
     {
-        //
+        $breed = Breed::find($id);
+        $breed->delete();
+        return redirect('breeds');
     }
 }

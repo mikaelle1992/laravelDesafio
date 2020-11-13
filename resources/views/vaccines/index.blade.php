@@ -25,15 +25,21 @@
             <td>{{$vaccine->name}}</td>
 
           <td>
+
+
                 <a href="{{url("vaccines/$vaccine->id")}}">
                     <button class="btn btn-dark">Visualizar</button>
                 </a>
                 <a href="{{url("vaccines/$vaccine->id/edit")}}">
                     <button class="btn btn-primary">Editar</button>
                 </a>
-                <a href="">
+            <form action="{{ route('vaccines.destroy',$vaccine->id) }}" method="POST">
+                <a href="{{url("vaccines/$vaccine->id")}}">
+                    @csrf
+                    @method('DELETE')
                     <button class="btn btn-danger">Deletar</button>
                 </a>
+            </form>
             </td>
           </tr>
         @endforeach

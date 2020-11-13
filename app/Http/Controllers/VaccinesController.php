@@ -93,8 +93,10 @@ class VaccinesController extends Controller
      * @param  \App\Models\vaccines  $vaccines
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Vaccines $vaccines)
+    public function destroy($id)
     {
-        //
+        $vaccine = Vaccines::find($id);
+        $vaccine->delete();
+        return redirect('vaccines');
     }
 }
