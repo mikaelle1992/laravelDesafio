@@ -6,6 +6,7 @@ use App\Http\Controllers\PatientController;
 use App\Http\Controllers\VaccineWalletsController;
 use App\Http\Controllers\VaccinesController;
 use App\Http\Controllers\BreedController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,11 +21,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('user.index');
 });
+Route::resource('users', UserController::class);
+
 Route::resource('clients', ClientController::class);
 Route::resource('animals', AnimalController::class);
 Route::resource('patients', PatientController::class);
 Route::resource('vaccinewallets', VaccineWalletsController::class);
 Route::resource('vaccines', VaccinesController::class);
 Route::resource('breeds', BreedController::class);
+

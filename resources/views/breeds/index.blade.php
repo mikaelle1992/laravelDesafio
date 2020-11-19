@@ -2,6 +2,8 @@
 
 @section('page')
 
+<h1 class="text-center">Breed</h1>
+
 <div class="text-center mt-3 mb-4"></div>
 <a href="{{url('breeds/create')}}">
     <button class="btn btn-success">Cadastrar</button>

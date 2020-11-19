@@ -2,6 +2,8 @@
 
 @section('page')
 
+<h1 class="text-center">Patients</h1>
+
 <div class="text-center mt-3 mb-4"></div>
 <a href="{{url('patients/create')}}">
     <button class="btn btn-success">Cadastrar</button>
@@ -40,18 +42,21 @@
 
 
                 <a href="{{url("patients/$patient->id")}}">
-                    <button class="btn btn-dark">Visualizar</button>
+                    <button class="btn btn-dark">Patient file</button>
                 </a>
                 <a href="{{url("patients/$patient->id/edit")}}">
-                    <button class="btn btn-primary">Editar</button>
+                    <button class="btn btn-primary">Edit</button>
                 </a>
+
+
                  <form action="{{ route('patients.destroy',$patient->id) }}" method="POST">
                 <a href="{{url("patients/$patient->id")}}">
                     @csrf
                     @method('DELETE')
-                    <button class="btn btn-danger">Deletar</button>
+                    <button class="btn btn-danger">Delete</button>
                 </a>
                 </form>
+
             </td>
           </tr>
         @endforeach

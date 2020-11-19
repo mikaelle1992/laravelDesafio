@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Patient;
 use App\Models\Breed;
 use App\Models\Client;
+use App\Models\Vaccine_wallets;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\DB;
 
 
 class PatientController extends Controller
@@ -65,9 +67,15 @@ class PatientController extends Controller
      */
     public function show($id)
     {
-
+        $listVaccines = new Patient;
+        $listVaccines = DB::table('vaccines')
+        ->join('vaccine_wallets', 'vaccines.id','=','vaccine_wallets.vaccine_id')
+        ->select('vaccine_wallets.*','vaccines.name')
+        ->where('vaccine_wallets.patient_id','=', $id)
+        ->get();
+        $vaccinew = Vaccine_wallets::all();
         $patients = Patient::find($id);
-        return view('patients.show', compact('patients'));
+        return view('patients.show', compact('patients','listVaccines','vaccinew'));
 
     }
 
