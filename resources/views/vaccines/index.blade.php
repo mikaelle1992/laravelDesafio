@@ -6,7 +6,7 @@
 
 <div class="text-center mt-3 mb-4"></div>
 <a href="{{url('vaccines/create')}}">
-    <button class="btn btn-success">Cadastrar</button>
+    <button class="btn btn-success">Register</button>
 </a>
 
 @csrf
@@ -28,20 +28,17 @@
 
           <td>
 
-
                 <a href="{{url("vaccines/$vaccine->id")}}">
-                    <button class="btn btn-dark">Visualizar</button>
+                    <button class="btn btn-dark">To view</button>
                 </a>
                 <a href="{{url("vaccines/$vaccine->id/edit")}}">
-                    <button class="btn btn-primary">Editar</button>
+                    <button class="btn btn-primary">Edit</button>
                 </a>
-            <form action="{{ route('vaccines.destroy',$vaccine->id) }}" method="POST">
-                <a href="{{url("vaccines/$vaccine->id")}}">
-                    @csrf
-                    @method('DELETE')
-                    <button class="btn btn-danger">Deletar</button>
+
+                <a href="{{url("vaccines/$vaccine->id")}}"class="js-del">
+                   <button class="btn btn-danger">Delete</button>
                 </a>
-            </form>
+
             </td>
           </tr>
         @endforeach

@@ -26,7 +26,7 @@
 
      Vaccine:
      <select class="form-control" name="vaccine_id" id="vaccine_id">
-        <option value="{{$vaccinewallets->vaccine_id ??''}}" >{{$vaccinewallets->vaccines_id ?? 'Select'}}</option>
+        <option value="{{$vaccinewallets->vaccine_id ??''}}" >{{$vaccinewallets->relVaccine->name ?? 'Select'}}</option>
              @foreach ($vaccines as $vaccine)
                  <option value="{{$vaccine->id}}">{{$vaccine->id."-" .$vaccine->name}}</option>
              @endforeach

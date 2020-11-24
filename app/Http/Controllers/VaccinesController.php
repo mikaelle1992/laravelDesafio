@@ -97,6 +97,6 @@ class VaccinesController extends Controller
     {
         $vaccine = Vaccines::find($id);
         $vaccine->delete();
-        return redirect('vaccines');
+        return($vaccine)?"sim":"não";
     }
 }

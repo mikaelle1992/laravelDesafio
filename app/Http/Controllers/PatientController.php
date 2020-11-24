@@ -122,6 +122,6 @@ class PatientController extends Controller
     {
         $patient = Patient::find($id);
         $patient->delete();
-        return redirect('patients');
+        return($patient)?"sim":"não";
     }
 }

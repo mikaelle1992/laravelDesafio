@@ -6,7 +6,7 @@
 
 <div class="text-center mt-3 mb-4"></div>
 <a href="{{url('animals/create')}}">
-    <button class="btn btn-success">Cadastrar</button>
+    <button class="btn btn-success">Register</button>
 </a>
 @csrf
 <table class="table text-center">
@@ -27,19 +27,18 @@
 
 
                 <a href="{{url("animals/$animal->id")}}">
-                    <button class="btn btn-dark">Visualizar</button>
+                    <button class="btn btn-dark">To view</button>
                 </a>
                 <a href="{{url("animals/$animal->id/edit")}}">
-                    <button class="btn btn-primary">Editar</button>
+                    <button class="btn btn-primary">Edit</button>
                 </a>
 
-                <form action="{{ route('animals.destroy',$animal->id) }}" method="POST">
-                <a href="{{url("animals/$animal->id")}}">
-                     @csrf
-                    @method('DELETE')
-                    <button class="btn btn-danger">Deletar</button>
+
+                <a href="{{url("animals/$animal->id")}}"class="js-del">
+
+                    <button class="btn btn-danger">Delete</button>
                 </a>
-                </form>
+
             </td>
           </tr>
         @endforeach

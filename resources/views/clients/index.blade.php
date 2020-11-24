@@ -6,7 +6,7 @@
 
 <div class="text-center mt-3 mb-4"></div>
 <a href="{{url('clients/create')}}">
-    <button class="btn btn-success">Cadastrar</button>
+    <button class="btn btn-success">Register</button>
 </a>
 
 @csrf
@@ -15,7 +15,7 @@
     <thead class="thead-dark">
       <tr>
         <th scope="col">#</th>
-        <th scope="col">Nome</th>
+        <th scope="col">Name</th>
         <th scope="col">Phone</th>
         <th scope="col">Email</th>
         <th scope="col">Action</th>
@@ -32,18 +32,16 @@
 
 
                 <a href="{{url("clients/$client->id")}}">
-                    <button class="btn btn-dark">Visualizar</button>
+                    <button class="btn btn-dark">To view</button>
                 </a>
                 <a href="{{url("clients/$client->id/edit")}}">
-                    <button class="btn btn-primary">Editar</button>
+                    <button class="btn btn-primary">Edit</button>
                 </a>
-              <form action="{{ route('clients.destroy',$client->id) }}" method="POST">
-                <a href="{{ route('clients.destroy',$client->id) }}">
-                    @csrf
-                    @method('DELETE')
-                    <button class="btn btn-danger">Deletar</button>
+
+                <a href="{{ route('clients.destroy',$client->id) }}" class="js-del">
+                    <button class="btn btn-danger">Delete</button>
                 </a>
-                </form>
+
             </td>
           </tr>
         @endforeach

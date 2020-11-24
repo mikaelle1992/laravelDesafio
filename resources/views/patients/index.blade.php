@@ -6,7 +6,7 @@
 
 <div class="text-center mt-3 mb-4"></div>
 <a href="{{url('patients/create')}}">
-    <button class="btn btn-success">Cadastrar</button>
+    <button class="btn btn-success">Register</button>
 </a>
 
 @csrf
@@ -25,17 +25,14 @@
     </thead>
     <tbody>
         @foreach ($patients as $patient)
-            @php
-            $breed=$patient->find($patient->id)->relBreed;
-            $client=$patient->find($patient->id)->relClient;
-            @endphp
+
         <tr>
             <th scope="row">{{$patient->id}}</th>
             <td>{{$patient->name}}</td>
             <td>{{$patient->date_birth}}</td>
             <td>{{$patient->gender}}</td>
-            <td>{{$breed->name}}</td>
-            <td>{{$client->name}}</td>
+            <td>{{$patient->relBreed->name}}</td>
+            <td>{{$patient->relClient->name}}</td>
 
 
             <td>
@@ -48,14 +45,10 @@
                     <button class="btn btn-primary">Edit</button>
                 </a>
 
-
-                 <form action="{{ route('patients.destroy',$patient->id) }}" method="POST">
-                <a href="{{url("patients/$patient->id")}}">
-                    @csrf
-                    @method('DELETE')
+                 <a href="{{url("patients/$patient->id")}}" class="js-del">
                     <button class="btn btn-danger">Delete</button>
                 </a>
-                </form>
+
 
             </td>
           </tr>

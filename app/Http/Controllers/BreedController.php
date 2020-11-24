@@ -101,6 +101,6 @@ class BreedController extends Controller
     {
         $breed = Breed::find($id);
         $breed->delete();
-        return redirect('breeds');
+        return($breed)?"sim":"não";
     }
 }

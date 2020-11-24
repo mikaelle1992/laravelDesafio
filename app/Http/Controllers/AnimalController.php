@@ -103,6 +103,7 @@ class AnimalController extends Controller
     {
         $animal = Animal::find($id);
         $animal->delete();
-        return redirect('animals');
+        redirect('animals');
+
     }
 }

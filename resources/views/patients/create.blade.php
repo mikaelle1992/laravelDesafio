@@ -24,8 +24,8 @@
     Gender:
     <select class="form-control" name="gender" id="gender">
         <option value="{{$patients->gender ??''}}">{{$patients->gender ?? 'Select'}}</option>
-        <option value="macho">Macho</option>
-        <option value="femia">Femia</option>
+        <option value="macho">Male</option>
+        <option value="femea">Female</option>
     </select><br>
 
 

@@ -2,10 +2,10 @@
 
 @section('page')
 
-<h1 class="text-center">Visualizar</h1><hr>
+<h1 class="text-center">To view</h1><hr>
 
 
-Nome: {{$patients->name}}<br>
+Name: {{$patients->name}}<br>
 Date birth: {{$patients->date_birth}}<br>
 Gender: {{$patients->gender}}<br>
 Breed: {{$patients->relBreed->name}}<br>

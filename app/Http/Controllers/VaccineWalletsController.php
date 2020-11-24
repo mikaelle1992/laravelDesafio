@@ -121,7 +121,7 @@ class VaccineWalletsController extends Controller
     {
         $vaccinewallet = Vaccine_wallets::find($id);
         $vaccinewallet->delete();
-        return redirect('vaccinewallets');
+        return($vaccinewallet)?"sim":"não";
 
 
 

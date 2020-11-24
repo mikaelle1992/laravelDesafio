@@ -17,9 +17,9 @@ class Vaccine_wallets extends Model
     {
         return $this->hasOne('App\Models\User', 'id', 'user_id');
     }
-    public function relVaccines()
+    public function relVaccine()
     {
-        return $this->hasMany('App\Models\Vaccines','id', 'vaccine_id');
+        return $this->hasOne('App\Models\Vaccines','id', 'vaccine_id');
     }
     public function relPatient()
     {
