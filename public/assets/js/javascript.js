@@ -1,3 +1,4 @@
+
 (function(win,doc){
     'use strict';
 
@@ -13,7 +14,9 @@
            ajax.setRequestHeader('X-CSRF-TOKEN',token);
            ajax.onreadystatechange=function(){
                if(ajax.readyState === 4 && ajax.status === 200){
-                   win.location.href="clients";
+
+                var x= location.search;
+                   win.location.href=x;
                }
            };
            ajax.send();

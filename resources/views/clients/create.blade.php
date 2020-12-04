@@ -16,7 +16,7 @@
     Name:
     <input class="form-control" type="text" name="name" id="name" value="{{$clients->name ?? ''}}"required><br>
     Phone:
-    <input class="form-control" type="tel" name="phone" id="phone" value="{{$clients->phone ?? ''}}"equired><br>
+    <input class="form-control" type="tel" name="phone" id="phone" value="{{$clients->phone ?? ''}}"required><br>
     Email:
     <input class="form-control" type="email" name="email" id="email" value="{{$clients->email ?? ''}}"required><br>
 

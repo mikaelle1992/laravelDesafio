@@ -40,7 +40,7 @@
              @endforeach
      </select><br>
 
-    Date Birth:
+    Date vaccine:
     <input class="form-control" type="date" name="vaccine_date" id="vaccine_date" value="{{$vaccinewallets->vaccine_date ?? ''}}"><br>
 
 
